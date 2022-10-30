@@ -1,2 +1,6 @@
 # CS301_Project
 CS 301 Project for Semantic Segmentation of Satellite Imagery by Moiez Qamar and Kamil Arif
+
+
+Screenshot of NNI UI:
+![image](https://user-images.githubusercontent.com/31070777/198862267-f8b04f1d-b0df-4b2c-864a-fd36e53946c4.png)
