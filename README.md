@@ -1,5 +1,5 @@
 # CS301_Project
-CS 301 Project for Semantic Segmentation of Satellite Imagery by Moiez Qamar and Kamil Arif
+CS 301 Project for Semantic Segmentation of Satellite Imagery by Moiez Qamar and Kamil Arif (group 10)
 
 Colab:
 [https://colab.research.google.com/drive/1sJOl3XnPv7BK675bk86beYCkFFAaPC4C?usp=sharing](https://colab.research.google.com/drive/1sJOl3XnPv7BK675bk86beYCkFFAaPC4C?usp=sharing)
