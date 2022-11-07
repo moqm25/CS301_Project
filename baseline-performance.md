@@ -1,5 +1,5 @@
-**Semantic Segmentation of Satellite Imagery Project for CS 301 - 103, 
-Group 10: Kamil Arif and Moiez Qamar**
+**Semantic Segmentation of Satellite Imagery Project for CS 301 - 103,**
+**Group 10: Kamil Arif and Moiez Qamar**
 
 Model
 The model used was the custom model provided in the github from the description of the provided video. We decided not to use the resnet34 option in hopes that the custom model would consume less RAM then loading an entire external model at runtime.
