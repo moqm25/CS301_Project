@@ -11,11 +11,11 @@ After the first 120 epochs, the model was trained on the full dataset with a sig
 Note: Due to the fact that the model was trained in segments, a full graph of Loss over all Epochs is not available. Instead a representative graph is given of what the first 40 epochs looked like, generated from a fresh model. 
 
   Precision vs Recall Curve:
-![Precision vs Recall]([https://myoctocat.com/assets/images/base-octocat.svg](https://github.com/moqm25/CS301_Project/blob/milestone-2/images/Precision%20vs%20Recall.png))
+![Precision vs Recall](https://github.com/moqm25/CS301_Project/blob/milestone-2/images/Precision%20vs%20Recall.png)
 
 
   Loss vs. Epochs (0-40 epochs):
-![Loss vs. Epochs (0-40 epochs)]([[https://myoctocat.com/assets/images/base-octocat.svg](https://github.com/moqm25/CS301_Project/blob/milestone-2/images/Precision%20vs%20Recall.png)](https://github.com/moqm25/CS301_Project/blob/milestone-2/images/Training%20and%20Validation%20Loss.png))
+![Loss vs. Epochs (0-40 epochs)](https://github.com/moqm25/CS301_Project/blob/milestone-2/images/Training%20and%20Validation%20Loss.png)
   
   ------------------------------------------------------------
   ![image 1](https://github.com/moqm25/CS301_Project/blob/milestone-2/images/image%201.png)
