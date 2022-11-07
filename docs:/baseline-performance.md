@@ -17,7 +17,7 @@ Note: Due to the fact that the model was trained in segments, a full graph of Lo
   Loss vs. Epochs (0-40 epochs):\
 ![Loss vs. Epochs (0-40 epochs)](https://github.com/moqm25/CS301_Project/blob/milestone-2/images/Training%20and%20Validation%20Loss.png)\
   \
-  ------------------------------------------------------------\
+  ------------------------------------------------------------
   ![image 1](https://github.com/moqm25/CS301_Project/blob/milestone-2/images/image%201.png)\
   ![image 2](https://github.com/moqm25/CS301_Project/blob/milestone-2/images/image%202.png)  \
   ![image 3](https://github.com/moqm25/CS301_Project/blob/milestone-2/images/image%203.png)\
