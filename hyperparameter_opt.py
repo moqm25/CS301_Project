@@ -20,7 +20,7 @@ def evaluate_model(learning_rate, filter_count_factor):
 learning_rate_space = []
 for e in [0, -1, -2, -3, -4, -5, -6]:
     for d in [1, 0.75, 0.5, 0.25]:    
-        learning_rate_space.append((1.0 / d) * (10 ** e))
+        learning_rate_space.append((1.0 * d) * (10 ** e))
 print("Learning Rates: ", learning_rate_space)
 
 filter_count_space = [16, 14, 12, 10, 8, 6]
