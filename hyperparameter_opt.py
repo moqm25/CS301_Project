@@ -78,7 +78,7 @@ for _ in range(max(START_MODEL_COUNT - len(model_losses), 0)):
     print("RANDOM STAGE: Evaluating ", model_name(lr, fcf))
     model_losses.append([lr, fcf, evaluate_model(lr, fcf)])
 
-for _ in range(TOTAL_ITER_COUNT - START_MODEL_COUNT):
+for _ in range(max(TOTAL_ITER_COUNT - START_MODEL_COUNT - len(model_losses), 4)):
     lr, fcf = find_best_params()
 
     print("TPE STAGE: Evaluating ", model_name(lr, fcf))
