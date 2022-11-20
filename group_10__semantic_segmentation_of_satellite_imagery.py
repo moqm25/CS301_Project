@@ -225,7 +225,7 @@ def train_model(learning_rate, filter_count_factor, name, dataset):
                         verbose=1)
     if len(name) > 0:
         print("\n-------Saving Model!--------\n")
-        model.save(f"models/{name}-{history1.history['loss'][-1]}.hdf5")
+        model.save(f"models/{name}_{history1.history['loss'][-1]}.hdf5")
     
     return history1
 

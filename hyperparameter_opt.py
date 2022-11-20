@@ -18,7 +18,7 @@ TOTAL_ITER_COUNT = 24
 dataset = mdl.getData()
 
 def model_name(learning_rate, filter_count_factor):
-    return f"model_{filter_count_factor}-{str(learning_rate)}"
+    return f"model__{filter_count_factor}_{str(learning_rate)}"
 def evaluate_model(learning_rate, filter_count_factor):
     history = mdl.train_model(learning_rate, filter_count_factor, model_name(learning_rate, filter_count_factor), dataset)
     resetSession()
@@ -26,7 +26,7 @@ def evaluate_model(learning_rate, filter_count_factor):
 
 ### Search Space [28 x 6]###
 learning_rate_space = []
-for e in [0, -1, -2, -3, -4]:
+for e in [-2, -3, -4]:
     for d in [1, 0.75, 0.5, 0.25]:    
         learning_rate_space.append((1.0 * d) * (10 ** e))
 print("Learning Rates: ", learning_rate_space)
@@ -48,16 +48,24 @@ def likelihood(newValue, existingSet):
 
 def find_best_params():
     good_models, bad_models = partition_existing_models()
-    lr_evals = likelihood(learning_rate_space, good_models[:, 0]) / likelihood(learning_rate_space, bad_models[:, 0])
-    fcf_evals = likelihood(filter_count_space, good_models[:, 1]) / likelihood(filter_count_space, bad_models[:, 1])
-    return learning_rate_space[np.argmax(lr_evals)], filter_count_space[np.argmax(fcf_evals)]
+    lr_evals = np.argsort(likelihood(learning_rate_space, good_models[:, 0]) / likelihood(learning_rate_space, bad_models[:, 0]))
+    fcf_evals = np.argsort(likelihood(filter_count_space, good_models[:, 1]) / likelihood(filter_count_space, bad_models[:, 1]))
+    def getValuesAt(i):
+        return [learning_rate_space[lr_evals[-i]], filter_count_space[fcf_evals[-i]]]
+    outputValue = getValuesAt(1)
+    i = 1
+    while outputValue in np.array(model_losses)[:, 0:1]:
+        i += 1
+        outputValue = getValuesAt(i)
+    return outputValue
+
 
 if os.path.isdir('models'):
     for file in os.listdir('models'):
         if str(file).startswith('model_'):
             print(f"Loading cached model {file}...")
             params = np.array(file.split('__')[1].split('.hdf5')[0].split('_')).astype(np.float)
-            model_losses.append(params)
+            model_losses.append([params[1], params[0], params[2]])
 
 
 for _ in range(max(START_MODEL_COUNT - len(model_losses), 0)):
