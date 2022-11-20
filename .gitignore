@@ -161,3 +161,4 @@ cython_debug/
 *.jpg
 *.png
 semantic-segmentation-of-aerial-imagery/Semantic segmentation dataset/classes.json
+kaggle.json
