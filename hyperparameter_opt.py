@@ -2,6 +2,7 @@ import group_10__semantic_segmentation_of_satellite_imagery as mdl
 import numpy as np
 import matplotlib as plt
 import re
+from tensorflow import keras
 
 START_MODEL_COUNT = 4
 TOTAL_ITER_COUNT = 24
@@ -12,6 +13,7 @@ def model_name(learning_rate, filter_count_factor):
     return f"model_{filter_count_factor}-{str(learning_rate)}"
 def evaluate_model(learning_rate, filter_count_factor):
     history = mdl.train_model(learning_rate, filter_count_factor, model_name(learning_rate, filter_count_factor), dataset)
+    keras.backend.clear_session()
     return history.history['loss'][-1]
 
 ### Search Space [28 x 6]###
