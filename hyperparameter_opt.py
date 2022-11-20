@@ -26,7 +26,7 @@ def evaluate_model(learning_rate, filter_count_factor):
 
 ### Search Space [28 x 6]###
 learning_rate_space = []
-for e in [0, -1, -2, -3, -4, -5, -6]:
+for e in [0, -1, -2, -3, -4]:
     for d in [1, 0.75, 0.5, 0.25]:    
         learning_rate_space.append((1.0 * d) * (10 ** e))
 print("Learning Rates: ", learning_rate_space)
@@ -39,8 +39,8 @@ model_losses = []
 
 #returns better_models, worse_models
 def partition_existing_models(threshold=0.5):
-    mls = model_losses[np.argsort(np.array(model_losses)[:, 2])]
-    threshold_point = int(len(mls) * threshold_point)
+    mls = np.array(model_losses)[np.argsort(np.array(model_losses)[:, 2])]
+    threshold_point = int(len(mls) * threshold)
     return mls[:threshold_point], mls[threshold_point:]
 #Provides a probability describing how likely it is for the given value to appear in the given set
 def likelihood(newValue, existingSet):
@@ -56,7 +56,7 @@ if os.path.isdir('models'):
     for file in os.listdir('models'):
         if str(file).startswith('model_'):
             print(f"Loading cached model {file}...")
-            params = np.array(file.split('_')[1].split('.hdf5')[0].split('-')).astype(np.float)
+            params = np.array(file.split('__')[1].split('.hdf5')[0].split('_')).astype(np.float)
             model_losses.append(params)
 
 
