@@ -3,7 +3,15 @@ import numpy as np
 import matplotlib as plt
 import re
 from tensorflow import keras
+import os
+from tensorflow.compat.v1 import ConfigProto
+from tensorflow.compat.v1 import InteractiveSession
 
+def resetSession():
+    keras.backend.clear_session()
+    config = ConfigProto()
+    config.gpu_options.allow_growth = True
+    session = InteractiveSession(config=config)
 START_MODEL_COUNT = 4
 TOTAL_ITER_COUNT = 24
 
@@ -13,7 +21,7 @@ def model_name(learning_rate, filter_count_factor):
     return f"model_{filter_count_factor}-{str(learning_rate)}"
 def evaluate_model(learning_rate, filter_count_factor):
     history = mdl.train_model(learning_rate, filter_count_factor, model_name(learning_rate, filter_count_factor), dataset)
-    keras.backend.clear_session()
+    resetSession()
     return history.history['loss'][-1]
 
 ### Search Space [28 x 6]###
@@ -31,7 +39,7 @@ model_losses = []
 
 #returns better_models, worse_models
 def partition_existing_models(threshold=0.5):
-    mls = model_losses[np.argsort(model_losses[:, 2])]
+    mls = model_losses[np.argsort(np.array(model_losses)[:, 2])]
     threshold_point = int(len(mls) * threshold_point)
     return mls[:threshold_point], mls[threshold_point:]
 #Provides a probability describing how likely it is for the given value to appear in the given set
@@ -44,7 +52,15 @@ def find_best_params():
     fcf_evals = likelihood(filter_count_space, good_models[:, 1]) / likelihood(filter_count_space, bad_models[:, 1])
     return learning_rate_space[np.argmax(lr_evals)], filter_count_space[np.argmax(fcf_evals)]
 
-for _ in range(START_MODEL_COUNT):
+if os.path.isdir('models'):
+    for file in os.listdir('models'):
+        if str(file).startswith('model_'):
+            print(f"Loading cached model {file}...")
+            params = np.array(file.split('_')[1].split('.hdf5')[0].split('-')).astype(np.float)
+            model_losses.append(params)
+
+
+for _ in range(max(START_MODEL_COUNT - len(model_losses), 0)):
     lr_arg = np.random.choice(range(len(learning_rate_space)))
     lr = learning_rate_space[lr_arg]
 

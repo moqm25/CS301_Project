@@ -218,14 +218,14 @@ def train_model(learning_rate, filter_count_factor, name, dataset):
 
 
     history1 = model.fit(X_train, y_train, 
-                        batch_size = 16,
+                        batch_size = 4,
                         epochs=20, 
                         validation_data=(X_test, y_test), 
                         shuffle=True,
                         verbose=1)
     if len(name) > 0:
         print("\n-------Saving Model!--------\n")
-        model.save(f"models/{name}.hdf5")
+        model.save(f"models/{name}-{history1.history['loss'][-1]}.hdf5")
     
     return history1
 
