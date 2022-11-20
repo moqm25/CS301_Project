@@ -203,23 +203,23 @@ def train_model(learning_rate, filter_count_factor, name, dataset):
     def get_model():
         return multi_unet_model(filter_count_factor=filter_count_factor, n_classes=n_classes, IMG_HEIGHT=IMG_HEIGHT, IMG_WIDTH=IMG_WIDTH, IMG_CHANNELS=IMG_CHANNELS)
     
-    if os.path.isdir("models") and os.path.isfile(f"models/{name}.hdf5"):
-        print("\n-------Loading Model!--------\n")
-        model = load_model(f"models/{name}.hdf5",
-                    custom_objects={'dice_loss_plus_1focal_loss': total_loss,
-                                    'jacard_coef':jacard_coef})
-        model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate), loss=total_loss, metrics=metrics)
-    else:
-        print("\n-------Creating Model!--------\n")
-        model = get_model()
-        model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate), loss=total_loss, metrics=metrics)
-        #model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=metrics)
-        model.summary()
+    # if os.path.isdir("models") and os.path.isfile(f"models/{name}.hdf5"):
+    #     print("\n-------Loading Model!--------\n")
+    #     model = load_model(f"models/{name}.hdf5",
+    #                 custom_objects={'dice_loss_plus_1focal_loss': total_loss,
+    #                                 'jacard_coef':jacard_coef})
+    #     model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate), loss=total_loss, metrics=metrics)
+    # else:
+    print("\n-------Creating Model!--------\n")
+    model = get_model()
+    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate), loss=total_loss, metrics=metrics)
+    #model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=metrics)
+    model.summary()
 
 
     history1 = model.fit(X_train, y_train, 
                         batch_size = 16,
-                        epochs=5, 
+                        epochs=20, 
                         validation_data=(X_test, y_test), 
                         shuffle=True,
                         verbose=1)
@@ -228,9 +228,6 @@ def train_model(learning_rate, filter_count_factor, name, dataset):
         model.save(f"models/{name}.hdf5")
     
     return history1
-
-if __name__ == "__main__":
-    history = train_model(10**-2, 16, "TESTER", getData())
 
     #Minmaxscaler
     #With weights...[0.1666, 0.1666, 0.1666, 0.1666, 0.1666, 0.1666]   in Dice loss
@@ -246,7 +243,7 @@ if __name__ == "__main__":
 
     ###########################################################
     #plot the training and validation accuracy and loss at each epoch
-
+def plot_metrics(history):
     loss = history.history['loss']
     val_loss = history.history['val_loss']
     epochs = range(1, len(loss) + 1)
@@ -324,3 +321,7 @@ if __name__ == "__main__":
 
     #     #####################################################################
     #     continueImgView = input("Continue viewing?")
+
+if __name__ == "__main__":
+    history = train_model(0.2, 14, "TESTER", getData())
+    plot_metrics(history)
