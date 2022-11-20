@@ -13,7 +13,7 @@ def resetSession():
     config.gpu_options.allow_growth = True
     session = InteractiveSession(config=config)
 START_MODEL_COUNT = 4
-TOTAL_ITER_COUNT = 24
+TOTAL_ITER_COUNT = 12
 
 dataset = mdl.getData()
 
@@ -78,11 +78,11 @@ for _ in range(max(START_MODEL_COUNT - len(model_losses), 0)):
     print("RANDOM STAGE: Evaluating ", model_name(lr, fcf))
     model_losses.append([lr, fcf, evaluate_model(lr, fcf)])
 
-for _ in range(max(TOTAL_ITER_COUNT - START_MODEL_COUNT - len(model_losses), 4)):
+for _ in range(max(TOTAL_ITER_COUNT - START_MODEL_COUNT - len(model_losses), 0)):
     lr, fcf = find_best_params()
 
     print("TPE STAGE: Evaluating ", model_name(lr, fcf))
     model_losses.append([lr, fcf, evaluate_model(lr, fcf)])
 
-best_model = model_losses[np.argsort(model_losses[:, 2])[0]]
+best_model = np.array(model_losses)[np.argsort(np.array(model_losses)[:, 2])[0]]
 print(f"\nBEST MODEL: {best_model}\nNAME: {model_name(best_model[0], best_model[1])}")
