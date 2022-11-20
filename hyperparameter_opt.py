@@ -51,7 +51,7 @@ def find_best_params():
     lr_evals = np.argsort(likelihood(learning_rate_space, good_models[:, 0]) / likelihood(learning_rate_space, bad_models[:, 0]))
     fcf_evals = np.argsort(likelihood(filter_count_space, good_models[:, 1]) / likelihood(filter_count_space, bad_models[:, 1]))
     def getValuesAt(i):
-        return [learning_rate_space[lr_evals[-i]], filter_count_space[fcf_evals[-i]]]
+        return [learning_rate_space[lr_evals[-max(i, len(learning_rate_space))]], filter_count_space[fcf_evals[-max(i, len(filter_count_space))]]]
     outputValue = getValuesAt(1)
     i = 1
     while outputValue in np.array(model_losses)[:, 0:1]:
