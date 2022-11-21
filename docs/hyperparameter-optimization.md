@@ -40,7 +40,8 @@ We established a search space of 12 learning rates ranging from 0.01 to 2.5e-5, 
 ![image](https://user-images.githubusercontent.com/31070777/202961543-80c7809f-3029-43cb-8743-cde08341f8d3.png)
 ![image](https://user-images.githubusercontent.com/31070777/202961550-f096246b-c251-4983-92cb-052eb79f898a.png)
 ![image](https://user-images.githubusercontent.com/31070777/202961561-3fb1fc21-67da-47e8-b7fc-4ca4c148dfa7.png)
-![image](https://user-images.githubusercontent.com/31070777/202961577-86b9c6a7-600f-40a7-997d-82d1df23653f.png)
+![image](https://user-images.githubusercontent.com/31070777/202961611-a31be865-7540-414d-9e3b-4ac152d4e1d5.png)
+
 
 
 
