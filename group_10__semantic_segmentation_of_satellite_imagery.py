@@ -219,7 +219,7 @@ def train_model(learning_rate, filter_count_factor, name, dataset):
 
     history1 = model.fit(X_train, y_train, 
                         batch_size = 4,
-                        epochs=20, 
+                        epochs=40, 
                         validation_data=(X_test, y_test), 
                         shuffle=True,
                         verbose=1)
@@ -284,44 +284,60 @@ def plot_metrics(history):
     # # y_pred_argmax=np.argmax(y_pred, axis=3)
     # y_test_argmax=np.argmax(y_test, axis=3)
 
+def test_images():
+    weights = [0.1666, 0.1666, 0.1666, 0.1666, 0.1666, 0.1666]
+    dice_loss = sm.losses.DiceLoss(class_weights=weights) 
+    focal_loss = sm.losses.CategoricalFocalLoss()
+    total_loss = dice_loss + (1 * focal_loss)  #
 
-    # # #Using built in keras function for IoU
-    # # from keras.metrics import MeanIoU
-    # # n_classes = 6
-    # # IOU_keras = MeanIoU(num_classes=n_classes)  
-    # # IOU_keras.update_state(y_test_argmax, y_pred_argmax)
-    # # print("Mean IoU =", IOU_keras.result().numpy())
+    X_train, X_test, y_train, y_test = getData()
+    model = keras.models.load_model(f"models\TESTER_0.9177731871604919.hdf5",
+                     custom_objects={'dice_loss_plus_1focal_loss': total_loss,
+                                     'jacard_coef':jacard_coef})
+    
+    # # #IOU
+    y_pred=model.predict(X_test)
+    y_pred_argmax=np.argmax(y_pred, axis=3)
+    y_test_argmax=np.argmax(y_test, axis=3)
 
-    # #######################################################################
-    # #Predict on a few images
+    # #Using built in keras function for IoU
+    # from keras.metrics import MeanIoU
+    # n_classes = 6
+    # IOU_keras = MeanIoU(num_classes=n_classes)  
+    # IOU_keras.update_state(y_test_argmax, y_pred_argmax)
+    # print("Mean IoU =", IOU_keras.result().numpy())
 
-    # continueImgView = input("View image?")
-    # while (continueImgView == 'y'):
-    #     import random
-    #     test_img_number = random.randint(0, len(X_test))
-    #     test_img = X_test[test_img_number]
-    #     ground_truth=y_test_argmax[test_img_number]
-    #     #test_img_norm=test_img[:,:,0][:,:,None]
-    #     test_img_input=np.expand_dims(test_img, 0)
-    #     prediction = (model.predict(test_img_input))
-    #     predicted_img=np.argmax(prediction, axis=3)[0,:,:]
+    #######################################################################
+    #Predict on a few images
+
+    continueImgView = input("View image?")
+    while (continueImgView == 'y'):
+        import random
+        test_img_number = random.randint(0, len(X_test))
+        test_img = X_test[test_img_number]
+        ground_truth=y_test_argmax[test_img_number]
+        #test_img_norm=test_img[:,:,0][:,:,None]
+        test_img_input=np.expand_dims(test_img, 0)
+        prediction = (model.predict(test_img_input))
+        predicted_img=np.argmax(prediction, axis=3)[0,:,:]
 
 
-    #     plt.figure(figsize=(12, 8))
-    #     plt.subplot(231)
-    #     plt.title('Testing Image')
-    #     plt.imshow(test_img)
-    #     plt.subplot(232)
-    #     plt.title('Testing Label')
-    #     plt.imshow(ground_truth)
-    #     plt.subplot(233)
-    #     plt.title('Prediction on test image')
-    #     plt.imshow(predicted_img)
-    #     plt.show()
+        plt.figure(figsize=(12, 8))
+        plt.subplot(231)
+        plt.title('Testing Image')
+        plt.imshow(test_img)
+        plt.subplot(232)
+        plt.title('Testing Label')
+        plt.imshow(ground_truth)
+        plt.subplot(233)
+        plt.title('Prediction on test image')
+        plt.imshow(predicted_img)
+        plt.show()
 
-    #     #####################################################################
-    #     continueImgView = input("Continue viewing?")
+        #####################################################################
+        continueImgView = input("Continue viewing?")
 
 if __name__ == "__main__":
-    history = train_model(0.2, 14, "TESTER", getData())
-    plot_metrics(history)
+    #history = train_model(1.04285714e-03, 16, "TESTER", getData())
+    #plot_metrics(history)
+    test_images()
