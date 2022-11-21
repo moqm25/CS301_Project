@@ -30,17 +30,20 @@ We established a search space of 12 learning rates ranging from 0.01 to 2.5e-5, 
 ![Loss vs. Epochs (0-40 epochs)](https://github.com/moqm25/CS301_Project/blob/milestone-3/images/Training%20and%20Validation%20Loss.png)
   
   ------------------------------------------------------------
-  ![image 1](https://github.com/moqm25/CS301_Project/blob/milestone-3/images/image%301.png)
-  ![image 2](https://github.com/moqm25/CS301_Project/blob/milestone-3/images/image%302.png)  
-  ![image 3](https://github.com/moqm25/CS301_Project/blob/milestone-3/images/image%303.png)
-  ![image 4](https://github.com/moqm25/CS301_Project/blob/milestone-3/images/image%304.png)
-  ![image 5](https://github.com/moqm25/CS301_Project/blob/milestone-3/images/image%305.png)
-  ![image 6](https://github.com/moqm25/CS301_Project/blob/milestone-3/images/image%306.png)
-  ![image 7](https://github.com/moqm25/CS301_Project/blob/milestone-3/images/image%307.png)
-  ![image 8](https://github.com/moqm25/CS301_Project/blob/milestone-3/images/image%308.png)
-  ![image 9](https://github.com/moqm25/CS301_Project/blob/milestone-3/images/image%309.png)
-  ![image 10](https://github.com/moqm25/CS301_Project/blob/milestone-3/images/image%3010.png)
-  ![image 11](https://github.com/moqm25/CS301_Project/blob/milestone-3/images/image%3011.png)
-  ![image 12](https://github.com/moqm25/CS301_Project/blob/milestone-3/images/image%3012.png)
-  ![image 13](https://github.com/moqm25/CS301_Project/blob/milestone-3/images/image%3013.png)
-  ![image 14](https://github.com/moqm25/CS301_Project/blob/milestone-3/images/image%3014.png)
+![image](https://user-images.githubusercontent.com/31070777/202961470-fd1565e7-0824-4a16-a73f-bde0cbc68f56.png)
+![image](https://user-images.githubusercontent.com/31070777/202961477-02436650-3fa9-44b2-939d-21371acbb01e.png)
+![image](https://user-images.githubusercontent.com/31070777/202961485-8b9eb092-1605-4825-befa-c27ec94bd945.png)
+![image](https://user-images.githubusercontent.com/31070777/202961495-5a2c3abc-2d17-4410-978b-39b0f4bf4ca8.png)
+![image](https://user-images.githubusercontent.com/31070777/202961512-eec73e59-d3f2-4608-8d2a-144a2a9c72b8.png)
+![image](https://user-images.githubusercontent.com/31070777/202961521-d6a62c70-a075-4ba6-8499-d6ef23445195.png)
+![image](https://user-images.githubusercontent.com/31070777/202961530-9c425287-e0c4-47c5-a11a-6e060ea6446a.png)
+![image](https://user-images.githubusercontent.com/31070777/202961543-80c7809f-3029-43cb-8743-cde08341f8d3.png)
+![image](https://user-images.githubusercontent.com/31070777/202961550-f096246b-c251-4983-92cb-052eb79f898a.png)
+![image](https://user-images.githubusercontent.com/31070777/202961561-3fb1fc21-67da-47e8-b7fc-4ca4c148dfa7.png)
+![image](https://user-images.githubusercontent.com/31070777/202961577-86b9c6a7-600f-40a7-997d-82d1df23653f.png)
+
+
+
+
+
+
