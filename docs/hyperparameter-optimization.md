@@ -23,11 +23,12 @@ We established a search space of 12 learning rates ranging from 0.01 to 2.5e-5, 
 
 
   Precision vs Recall Curve:
-![Precision vs Recall](https://github.com/moqm25/CS301_Project/blob/milestone-3/images/Precision%20vs%20Recall.png)
+![Precision vs Recall](https://cdn.discordapp.com/attachments/610972035195207730/1043927477787037726/image.png)
 
 
   Loss vs. Epochs (0-40 epochs):
-![Loss vs. Epochs (0-40 epochs)](https://github.com/moqm25/CS301_Project/blob/milestone-3/images/Training%20and%20Validation%20Loss.png)
+![Loss vs. Epochs (0-40 epochs)](https://user-images.githubusercontent.com/31070777/202961783-47161ef6-3c4d-42d5-af60-ce10e5dc28d2.png)
+![IoU vs. Epochs (0-40 epochs)](https://user-images.githubusercontent.com/31070777/202961835-b4c669b2-9615-4c58-920b-df84db6a2355.png)
   
   ------------------------------------------------------------
 ![image](https://user-images.githubusercontent.com/31070777/202961470-fd1565e7-0824-4a16-a73f-bde0cbc68f56.png)
