@@ -6,6 +6,7 @@ import random
 import distilled_model as kd_model
 import group_10__semantic_segmentation_of_satellite_imagery as mdl
 import simple_multi_unet_model as unet_model
+import matplotlib.pyplot as plt
 
 class Distiller(keras.Model):
     def __init__(self, student, teacher):
@@ -109,7 +110,7 @@ def main():
     teacher_model = tf.keras.models.load_model('models/final_model.hdf5',
                     custom_objects={'dice_loss_plus_1focal_loss': unet_model.get_total_loss(),
                                     'jacard_coef':unet_model.jacard_coef})
-    student_model = kd_model.multi_unet_model(4)
+    student_model = kd_model.multi_unet_model(16)
     
     teacher_model.summary()
     student_model.summary()
@@ -131,10 +132,36 @@ def main():
     )
 
     # Distill teacher to student
-    distiller.fit(x_train, y_train, epochs=3)
-
+    history = distiller.fit(x_train, y_train, epochs=20)
+    print(history.history)
     # Evaluate student on test dataset
     distiller.evaluate(x_test, y_test)
+    distiller.student.save("distilled_model.hdf5")
+
+    loss = history.history['student_loss']
+    epochs = range(1, len(loss) + 1)
+    plt.plot(epochs, loss, 'y', label='Training loss')
+    plt.title('Training and validation loss')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.show()
+
+    loss = history.history['distillation_loss']
+    epochs = range(1, len(loss) + 1)
+    plt.plot(epochs, loss, 'y', label='Distillation Training loss')
+    plt.title('Distillation Training and validation loss')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.show()
+
+    plt.plot(history.history['recall'][-1], history.history['precision'][-1])
+    plt.title("precision vs. recall")
+    plt.xlabel("recall")
+    plt.ylabel("precision")
+    plt.legend(["train", "validation"])
+    plt.show()
 
     # Testing student model on the best model based on validation set
     # student_model.load_model_from_file(args.checkpoint_dir)
