@@ -19,11 +19,8 @@ def jacard_coef(y_true, y_pred):
     intersection = K.sum(y_true_f * y_pred_f)
     return (intersection + 1.0) / (K.sum(y_true_f) + K.sum(y_pred_f) - intersection + 1.0)
 
-
-
-################################################################
-def multi_unet_model(filter_count_factor = 16, learning_rate = 0.001, n_classes=6, IMG_HEIGHT=256, IMG_WIDTH=256, IMG_CHANNELS=3):
-#Build the model
+def large_unet_definition(filter_count_factor = 16, learning_rate = 0.001, n_classes=6, IMG_HEIGHT=256, IMG_WIDTH=256, IMG_CHANNELS=3):
+    #Build the model
     inputs = Input((IMG_HEIGHT, IMG_WIDTH, IMG_CHANNELS))
     #s = Lambda(lambda x: x / 255)(inputs)   #No need for this if we normalize our inputs beforehand
     s = inputs
@@ -81,11 +78,20 @@ def multi_unet_model(filter_count_factor = 16, learning_rate = 0.001, n_classes=
     outputs = Conv2D(n_classes, (1, 1), activation='softmax')(c9)
      
     model = Model(inputs=[inputs], outputs=[outputs])
-    
+    return model
+
+def get_total_loss():
     weights = [0.1666, 0.1666, 0.1666, 0.1666, 0.1666, 0.1666]
     dice_loss = sm.losses.DiceLoss(class_weights=weights) 
     focal_loss = sm.losses.CategoricalFocalLoss()
     total_loss = dice_loss + (1 * focal_loss)
+    return total_loss
+
+################################################################
+def multi_unet_model(filter_count_factor = 16, learning_rate = 0.001, n_classes=6, IMG_HEIGHT=256, IMG_WIDTH=256, IMG_CHANNELS=3):
+    model = large_unet_definition(filter_count_factor, learning_rate, n_classes, IMG_HEIGHT, IMG_WIDTH, IMG_CHANNELS)
+    
+    total_loss = get_total_loss()
     
     prob_thresholds = np.linspace(0, 1, num=1000).tolist()
     metrics = ['accuracy', tf.keras.metrics.Precision(name="precision", thresholds=prob_thresholds), tf.keras.metrics.Recall(name="recall", thresholds=prob_thresholds)]

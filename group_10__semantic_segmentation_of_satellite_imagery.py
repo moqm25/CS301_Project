@@ -203,8 +203,8 @@ def train_model(learning_rate, filter_count_factor, name, dataset):
     def get_model():
         return multi_unet_model(filter_count_factor=filter_count_factor, n_classes=n_classes, IMG_HEIGHT=IMG_HEIGHT, IMG_WIDTH=IMG_WIDTH, IMG_CHANNELS=IMG_CHANNELS)
     
-    if os.path.isdir("models") and os.path.isfile(f"models/{name}.hdf5"):
-        model = load_model(f"models/{name}.hdf5",
+    if os.path.isdir("models") and os.path.isfile(f"models/final_model.hdf5"):
+        model = load_model(f"models/final_model.hdf5",
                     custom_objects={'dice_loss_plus_1focal_loss': total_loss,
                                     'jacard_coef':jacard_coef})
         model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate), loss=total_loss, metrics=metrics)
@@ -212,7 +212,7 @@ def train_model(learning_rate, filter_count_factor, name, dataset):
         model = get_model()
         model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate), loss=total_loss, metrics=metrics)
         #model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=metrics)
-        model.summary()
+    model.summary()
 
 
     history1 = model.fit(X_train, y_train, 
