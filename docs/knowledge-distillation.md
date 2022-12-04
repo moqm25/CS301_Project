@@ -8,11 +8,11 @@ Training Process:
 The training process info - place holder rn
 
   Precision vs Recall Curve:
-![Precision vs Recall](link got Precision vs. Recall thing)
+![Precision vs Recall](https://cdn.discordapp.com/attachments/610972035195207730/1049032276572373102/image.png)
 
 
   Loss vs. Epochs (0-40 epochs):
-![Loss vs. Epochs (0-40 epochs)](link got Loss vs. Epochs thing)
+![Loss vs. Epochs (0-40 epochs)](https://cdn.discordapp.com/attachments/610972035195207730/1049032234134413332/image.png)
   
   ------------------------------------------------------------
   ![image 1](https://cdn.discordapp.com/attachments/610972035195207730/1049043067820326983/image.png)
