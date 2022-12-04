@@ -2,10 +2,10 @@
 **Group 10: Kamil Arif and Moiez Qamar**
 
 Model:
-Info about the model - The distilled model is much smaller than the original full U-Net. The original U-Net has ~23 Convolutional layers and 1.9M trainable parameters, while the distilled model has 8 Convolutional layers and 25.8K trainable parameters. In real terms, this results in the distilled model having a file size of 186 KB, compared to the old model which is 23,002 KB. This is is a 99.2% size reduction with comparable results after a mere 20 epochs of training. 
+The distilled model is much smaller than the original full U-Net. The original U-Net has ~23 Convolutional layers and 1.9M trainable parameters, while the distilled model has 8 Convolutional layers and 25.8K trainable parameters. In real terms, this results in the distilled model having a file size of 186 KB, compared to the old model which is 23,002 KB. This is is a 99.2% size reduction with comparable results after a mere 20 epochs of training. 
 
 Training Process:
-The training process info - place holder rn
+The model used for this milestone is Knowledge Distillation. The Knowledge Distillation procedure is for model compression. This compression model uses a pre-trained model (known as the teacher) to train a small model (known as the student). In this model, the knowledge from the teacher model is transferred to the student model by using a loss function. It aims to match the softened teacher logits along with the ground-truth labels. In order to soften the logits, a scaling function was applied to the softmax which would smooth out the probability distribution, revealing inter-class relations which the teacher had learned.
 
   Precision vs Recall Curve:
 ![Precision vs Recall](https://cdn.discordapp.com/attachments/610972035195207730/1049032276572373102/image.png)
