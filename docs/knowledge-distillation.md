@@ -2,7 +2,7 @@
 **Group 10: Kamil Arif and Moiez Qamar**
 
 Model:
-Info about the model - place holder rn
+Info about the model - The distilled model is much smaller than the original full U-Net. The original U-Net has ~23 Convolutional layers and 1.9M trainable parameters, while the distilled model has 8 Convolutional layers and 25.8K trainable parameters. In real terms, this results in the distilled model having a file size of 186 KB, compared to the old model which is 23,002 KB. This is is a 99.2% size reduction with comparable results after a mere 20 epochs of training. 
 
 Training Process:
 The training process info - place holder rn
