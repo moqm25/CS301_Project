@@ -8,13 +8,16 @@ Training Process:
 The model used for this milestone is Knowledge Distillation. The Knowledge Distillation procedure is for model compression. This compression model uses a pre-trained model (known as the teacher) to train a small model (known as the student). In this model, the knowledge from the teacher model is transferred to the student model by using a loss function. It aims to match the softened teacher logits along with the ground-truth labels. In order to soften the logits, a scaling function was applied to the softmax which would smooth out the probability distribution, revealing inter-class relations which the teacher had learned.
 
   Precision vs Recall Curve:
+  
 ![Precision vs Recall](https://cdn.discordapp.com/attachments/610972035195207730/1049032276572373102/image.png)
 
 
   Loss vs. Epochs (0-40 epochs):
+  
 ![Loss vs. Epochs (0-40 epochs)](https://cdn.discordapp.com/attachments/610972035195207730/1049032234134413332/image.png)
   
-  ------------------------------------------------------------
+    ------------------------------------------------------------
+  
   ![image 1](https://cdn.discordapp.com/attachments/610972035195207730/1049043067820326983/image.png)
   ![image 2](https://cdn.discordapp.com/attachments/610972035195207730/1049043131749908490/image.png)
   ![image 3](https://cdn.discordapp.com/attachments/610972035195207730/1049043202830778498/image.png)
